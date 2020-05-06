@@ -39,6 +39,14 @@ To run deployment from a local machine, follow these steps:
 2. Build application: `npm run build:prod`
 3. Deploy: `npm run deploy`
 
+### Github Actions
+
+#### Initial Setup
+
+- Create firebase token: `firebase login:ci`
+- Goto Settings of GibHub Repo and add Secret _FIREBASE_TOKEN_ with the generated token as value
+- Adapt workflow yaml to expose token as ENV variable
+
 ## Post setup notes
 
 Your Ionic app is ready! Follow these next steps:

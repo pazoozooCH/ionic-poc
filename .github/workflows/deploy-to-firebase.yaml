@@ -1,0 +1,98 @@
+name: IONIC-POC CI/CD
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - run: npm ci
+      - run: npm run check
+        env:
+          CI: true
+
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.create_tag.outputs.new_tag }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - run: npm ci
+      - name: Bump version and push tag
+        if: github.ref == 'refs/heads/master'
+        uses: anothrNick/github-tag-action@1.17.2
+        id: create_tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+      - name: Replace environment placeholders
+        if: github.ref == 'refs/heads/master'
+        run: |
+          sed -i s/{{VERSION}}/${{ steps.create_tag.outputs.new_tag }}/ src/environments/environment.prod.ts
+          sed -i s/{{BUILD_TIME}}/$(date --utc +%FT%TZ)/ src/environments/environment.prod.ts
+      - run: npm run build:prod
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: www
+          path: www
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test, build]
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - run: npm install firebase-tools
+      - uses: actions/download-artifact@v1
+        with:
+          name: www
+          path: www
+      # Apprently, the github-tag-action will not trigger a push event, so we'll just
+      # add the whole release logic to this file as well...
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ needs.build.outputs.new_tag }}
+          release_name: Release ${{ needs.build.outputs.new_tag }}
+      - run: npm run firebase deploy -- --project fir-poc-1 --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

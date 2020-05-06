@@ -1,5 +1,27 @@
 # Ionic POC
 
+### Visual Studio Code
+
+The following plugins are recommended:
+
+- **Angular Language Service**: Angular template support
+- **Prettier - Code formatter**: Automatic code formatting
+- **TSLint**: Linting support for IDE
+
+The following workspace settings (`.vscode/settings.json`) are recommended:
+
+    {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true
+      },
+      "editor.rulers": [80]
+    }
+
+These settings will make Visual Studio Code automatically format code (using Prettier)
+and auto-fix linting issues on save.
+
 ## Post setup notes
 
 Your Ionic app is ready! Follow these next steps:

@@ -1,0 +1,8 @@
+{
+  "appId": "ch.inftec.ionicpoc",
+  "appName": "ionic-poc",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { FormDemoComponent } from './form-demo/form-demo.component';
+import { FormDemoComponent } from "./form-demo/form-demo.component";
 
 const routes: Routes = [
   {
-    path: 'form',
-    component: FormDemoComponent
+    path: "form",
+    component: FormDemoComponent,
   },
   {
-    path: '',
-    redirectTo: 'form',
-  }
+    path: "",
+    redirectTo: "form",
+  },
 ];
 
 @NgModule({

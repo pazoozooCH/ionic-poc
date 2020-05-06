@@ -11,19 +11,27 @@
   <form class="demo-form" [formGroup]="demoForm">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label position="stacked">Company Name (disabled)<ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked"
+          >Company Name (disabled)<ion-text color="danger"
+            >*</ion-text
+          ></ion-label
+        >
         <ion-input required type="text" formControlName="company"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked"
+          >First Name <ion-text color="danger">*</ion-text></ion-label
+        >
         <ion-input required type="text" formControlName="firstName"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="stacked"
+          >Last Name <ion-text color="danger">*</ion-text></ion-label
+        >
         <ion-input required type="text" formControlName="lastName"></ion-input>
       </ion-item>
-      
+
       <ion-item>
         <ion-label position="floating">Title</ion-label>
         <ion-input></ion-input>
@@ -43,7 +51,7 @@
         <ion-textarea></ion-textarea>
       </ion-item>
     </ion-list>
-<!--
+    <!--
     <mat-form-field class="span-6">
       <mat-label>First name *</mat-label>
       <input matInput formControlName="firstName" />
@@ -101,5 +109,4 @@
       </mat-form-field>
     </ng-container> -->
   </form>
-
 </ion-content>

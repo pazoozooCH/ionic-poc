@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-form-demo',
-  templateUrl: './form-demo.component.html',
-  styleUrls: ['./form-demo.component.scss'],
+  selector: "app-form-demo",
+  templateUrl: "./form-demo.component.html",
+  styleUrls: ["./form-demo.component.scss"],
 })
 export class FormDemoComponent implements OnInit {
   demoForm = this.fb.group({
@@ -16,12 +16,11 @@ export class FormDemoComponent implements OnInit {
       street2: [""],
       city: ["", Validators.pattern(/Bern/)],
       state: [""],
-      zip: ["94043", Validators.maxLength(5)]
-    })
+      zip: ["94043", Validators.maxLength(5)],
+    }),
   });
 
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {}
-
 }

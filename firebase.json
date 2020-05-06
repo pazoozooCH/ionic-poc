@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "inftec-ionic-poc",
+    "public": "www",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

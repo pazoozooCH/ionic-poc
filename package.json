@@ -5,6 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
+    "firebase": "firebase",
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --prod",
@@ -15,7 +16,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "firebase deploy --only hosting:inftec-ionic-poc"
   },
   "private": true,
   "dependencies": {

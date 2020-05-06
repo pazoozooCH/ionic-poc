@@ -1,5 +1,7 @@
 # Ionic POC
 
+## IDE Setup
+
 ### Visual Studio Code
 
 The following plugins are recommended:
@@ -21,6 +23,21 @@ The following workspace settings (`.vscode/settings.json`) are recommended:
 
 These settings will make Visual Studio Code automatically format code (using Prettier)
 and auto-fix linting issues on save.
+
+## Deployment
+
+The application will be deployed to Firebase and is accessible at:
+<https://inftec-ionic-poc.web.app>
+
+### Manual deployment
+
+To run deployment from a local machine, follow these steps:
+
+1. Login to Firebase
+   - `npm install -g firebase`
+   - `firebase login`
+2. Build application: `npm run build:prod`
+3. Deploy: `npm run deploy`
 
 ## Post setup notes
 

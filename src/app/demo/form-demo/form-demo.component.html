@@ -94,7 +94,17 @@
     </ion-grid>
   </form>
   <div class="buttons">
-    <ion-button>Submit</ion-button>
-    <ion-button color="secondary">Do something...</ion-button>
+    <ion-button (click)="submit()">Submit</ion-button>
+    <ion-button (click)="showActionSheet()" color="secondary"
+      >Do something...</ion-button
+    >
+  </div>
+  <div class="debugging">
+    <h4>Debugging - Form Value (status: {{ demoForm.status }})</h4>
+    <ion-textarea
+      [value]="demoForm.value | json"
+      autoGrow="true"
+      color="medium"
+    ></ion-textarea>
   </div>
 </ion-content>

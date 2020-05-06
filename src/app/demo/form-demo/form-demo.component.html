@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Form Demo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form class="demo-form" [formGroup]="demoForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Company Name (disabled)<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="company"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="firstName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="lastName"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Address</ion-label>
+        <ion-input placeholder="Address Line 1"></ion-input>
+        <ion-input placeholder="Address Line 2"></ion-input>
+        <ion-input placeholder="City"></ion-input>
+        <ion-input placeholder="State"></ion-input>
+        <ion-input placeholder="Zip Code"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Notes</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+    </ion-list>
+<!--
+    <mat-form-field class="span-6">
+      <mat-label>First name *</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field class="span-6">
+      <mat-label>Long Last Name That Will Be Truncated</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+
+    <ng-container formGroupName="address">
+      <mat-form-field class="span-12">
+        <mat-label>Address</mat-label>
+        <textarea
+          matInput
+          formControlName="street1"
+          placeholder="Ex. 100 Main St"
+        >
+1600 Amphitheatre Pkwy</textarea
+        >
+      </mat-form-field>
+      <mat-form-field class="span-12">
+        <mat-label>Address 2</mat-label>
+        <textarea matInput formControlName="street2"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="span-4">
+        <mat-label>City</mat-label>
+        <input
+          matInput
+          formControlName="city"
+          placeholder="Ex. San Francisco"
+        />
+        <mat-error>We only like Bern...</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="span-4">
+        <mat-label>State</mat-label>
+        <input
+          matInput
+          formControlName="state"
+          placeholder="Ex. California"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="span-4">
+        <mat-label>Postal Code</mat-label>
+        <input
+          matInput
+          formControlName="zip"
+          #postalCode
+          maxlength="5"
+          placeholder="Ex. 94105"
+        />
+        <mat-hint align="end">{{ postalCode.value.length }} / 5</mat-hint>
+      </mat-form-field>
+    </ng-container> -->
+  </form>
+
+</ion-content>

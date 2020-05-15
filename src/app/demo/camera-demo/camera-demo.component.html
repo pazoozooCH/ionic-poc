@@ -9,6 +9,16 @@
 
 <ion-content [fullscreen]="true">
   <div class="image-container">
+    <div *ngIf="showInfo" class="info">
+      <p>
+        Ionic must be able to access a camera. On a PC, we get an error if no
+        camera is present (there is no automatic upload fallback).
+      </p>
+      <p>
+        On iOS, the app must run in Safari (not Chrome) or as a PWA in order to
+        access the camera.
+      </p>
+    </div>
     <img [src]="photo" />
   </div>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">

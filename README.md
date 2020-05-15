@@ -1,8 +1,10 @@
 # Ionic POC
 
-## IDE Setup
+## Development
 
-### Visual Studio Code
+### IDE Setup
+
+#### Visual Studio Code
 
 The following plugins are recommended:
 
@@ -23,6 +25,13 @@ The following workspace settings (`.vscode/settings.json`) are recommended:
 
 These settings will make Visual Studio Code automatically format code (using Prettier)
 and auto-fix linting issues on save.
+
+### Running
+
+To run the application locally:
+
+- `npm install`
+- `npm start`
 
 ## Deployment
 

@@ -9,21 +9,34 @@ import { ToastController } from "@ionic/angular";
   styleUrls: ["./camera-demo.component.scss"],
 })
 export class CameraDemoComponent {
+  CameraSource = CameraSource;
+
   photo: SafeResourceUrl;
   showInfo = true;
+
+  cameraSource = CameraSource.Camera;
+  quality = 100;
 
   constructor(
     private sanitizer: DomSanitizer,
     private toastController: ToastController
   ) {}
 
+  onCameraSourceChange(event: CustomEvent) {
+    this.cameraSource = event.detail.value;
+  }
+
+  onQualityChange(event: CustomEvent) {
+    this.quality = event.detail.value;
+  }
+
   async takePicture() {
     try {
       const image = await Plugins.Camera.getPhoto({
-        quality: 100,
+        quality: this.quality,
         allowEditing: false,
         resultType: CameraResultType.DataUrl,
-        source: CameraSource.Camera,
+        source: this.cameraSource,
       });
 
       this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(

@@ -8,6 +8,37 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label>Camera Source</ion-label>
+    <ion-select
+      placeholder="Source"
+      [value]="cameraSource"
+      (ionChange)="onCameraSourceChange($event)"
+    >
+      <ion-select-option [value]="CameraSource.Camera"
+        >Camera</ion-select-option
+      >
+      <ion-select-option [value]="CameraSource.Photos"
+        >Photos</ion-select-option
+      >
+      <ion-select-option [value]="CameraSource.Prompt"
+        >Prompt</ion-select-option
+      >
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Quality</ion-label>
+    <ion-range
+      min="0"
+      max="100"
+      color="secondary"
+      (ionChange)="onQualityChange($event)"
+      [value]="quality"
+    >
+      <ion-label slot="start">0</ion-label>
+      <ion-label slot="end">100</ion-label>
+    </ion-range>
+  </ion-item>
   <div class="image-container">
     <div *ngIf="showInfo" class="info">
       <p>

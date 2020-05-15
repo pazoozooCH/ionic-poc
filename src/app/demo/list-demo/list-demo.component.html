@@ -8,6 +8,42 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <!-- List of Reordering -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>List of Reordering</ion-label>
+      <ion-button (click)="reordering = !reordering">{{
+        reordering ? "Done" : "Reorder"
+      }}</ion-button>
+    </ion-list-header>
+    <ion-reorder-group
+      [disabled]="!reordering"
+      (ionItemReorder)="doReorder($event)"
+    >
+      <ion-item
+        *ngFor="let item of reorderingItems; let i = index"
+        [color]="item.color"
+      >
+        <ion-label>Item {{ item.index }} (Position: {{ i }})</ion-label>
+        <ion-reorder slot="end"></ion-reorder>
+      </ion-item>
+    </ion-reorder-group>
+  </ion-list>
+
+  <!-- List of Reordering -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>List of Reordering (no handle, no toggle)</ion-label>
+    </ion-list-header>
+    <ion-reorder-group [disabled]="false" (ionItemReorder)="doReorder2($event)">
+      <ion-reorder *ngFor="let item of reorderingItems2; let i = index">
+        <ion-item [color]="item">
+          <ion-label>{{ item }}</ion-label>
+        </ion-item>
+      </ion-reorder>
+    </ion-reorder-group>
+  </ion-list>
+
   <!-- List of Text Items -->
   <ion-list>
     <ion-list-header>
@@ -55,6 +91,9 @@
 
   <!-- List of Sliding Items -->
   <ion-list>
+    <ion-list-header>
+      <ion-label>List of Sliding Items</ion-label>
+    </ion-list-header>
     <ion-item-sliding>
       <ion-item>
         <ion-label>Slide me left (single option)</ion-label>

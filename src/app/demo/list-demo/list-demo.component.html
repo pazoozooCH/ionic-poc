@@ -1,0 +1,108 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>List Demo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- List of Text Items -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Standard Items</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Pokémon Yellow</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mega Man X</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>The Legend of Zelda</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pac-Man</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Super Mario World</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- List of Input Items -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label>List of Input Items</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Input</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Toggle</ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Radio</ion-label>
+      <ion-radio slot="end"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Checkbox</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <!-- List of Sliding Items -->
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label>Slide me left (single option)</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="selected('Unread')">Unread</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label>Slide me left (multi options)</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="selected('Unread')">Unread</ion-item-option>
+        <ion-item-option (click)="selected('Archived')" color="secondary"
+          >Archive</ion-item-option
+        >
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label>Slide me left or right</ion-label>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option (click)="selected('Unread')">Unread</ion-item-option>
+        <ion-item-option (click)="selected('Archived')" color="secondary"
+          >Archive</ion-item-option
+        >
+      </ion-item-options>
+      <ion-item-options side="end">
+        <ion-item-option (click)="selected('Delete')" color="danger"
+          >Delete</ion-item-option
+        >
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding #autoSliding>
+      <ion-item>
+        <ion-label>Auto Close on Full Swipe</ion-label>
+      </ion-item>
+      <ion-item-options
+        side="start"
+        (ionSwipe)="selected('do it auto close'); autoSliding.closeOpened()"
+      >
+        <ion-item-option (click)="selected('do it')">Do It</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

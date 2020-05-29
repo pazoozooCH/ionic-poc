@@ -34,42 +34,23 @@
             <ion-icon slot="start" name="list"></ion-icon>
             <ion-label>List</ion-label>
           </ion-item>
+        </ion-list>
+
+        <ion-list id="tech-list">
+          <ion-list-header>Tech</ion-list-header>
 
           <ion-item
-            routerLink="demo/authentication"
+            routerLink="tech/authentication"
             routerLinkActive="selected"
             detail="false"
             lines="none"
           >
-            <ion-icon slot="start" name="lock-closed"></ion-icon>
+            <ion-icon
+              slot="start"
+              [name]="(isAuthenticated$ | async) ? 'lock-closed' : 'lock-open'"
+            ></ion-icon>
             <ion-label>Authentication</ion-label>
           </ion-item>
-        </ion-list>
-
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of appPages; let i = index"
-          >
-            <ion-item
-              (click)="selectedIndex = i"
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              routerLinkActive="selected"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

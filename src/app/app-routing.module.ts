@@ -7,18 +7,12 @@ const routes: Routes = [
     loadChildren: () => import("./demo/demo.module").then((m) => m.DemoModule),
   },
   {
-    path: "",
-    redirectTo: "folder/Inbox",
-    pathMatch: "full",
-  },
-  {
-    path: "folder/:id",
-    loadChildren: () =>
-      import("./folder/folder.module").then((m) => m.FolderPageModule),
+    path: "tech",
+    loadChildren: () => import("./tech/tech.module").then((m) => m.TechModule),
   },
   {
     path: "**",
-    redirectTo: "folder/Inbox",
+    redirectTo: "tech/authentication",
   },
 ];
 

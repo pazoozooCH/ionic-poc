@@ -122,7 +122,7 @@ export class AuthService {
 
   public runInitialLoginSequence(): Promise<void> {
     if (location.hash) {
-      console.log("Encountered hash fragment, plotting as table...");
+      console.warn("Encountered hash fragment, plotting as table...");
       console.table(
         location.hash
           .substr(1)
@@ -211,7 +211,7 @@ export class AuthService {
             if (stateUrl.startsWith("/") === false) {
               stateUrl = decodeURIComponent(stateUrl);
             }
-            console.log(
+            console.warn(
               `There was state of ${this.oauthService.state}, so we are sending you to: ${stateUrl}`
             );
             this.router.navigateByUrl(stateUrl);

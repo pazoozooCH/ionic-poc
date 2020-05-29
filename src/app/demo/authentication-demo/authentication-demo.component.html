@@ -10,7 +10,35 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Authentication Overview</ion-card-title>
+      <ion-card-title>Actions</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div>
+        <ion-button color="primary" (click)="authService.login()"
+          >Login</ion-button
+        >
+        <ion-button color="warning" (click)="authService.logout()"
+          >Logout</ion-button
+        >
+      </div>
+      <div>
+        <ion-button color="tertiary" (click)="authService.refresh()"
+          >Force Silent Refresh</ion-button
+        >
+        <ion-button color="tertiary" (click)="reload()">Reload Page</ion-button>
+        <ion-button color="danger" (click)="clearStorage()"
+          >Clear Storage</ion-button
+        >
+      </div>
+      <div>
+        <ion-button color="tertiary" (click)="callApi()">Call API</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Overview</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -18,6 +46,18 @@
         <li>
           <strong>isAuthenticated$: </strong>
           <span>{{ authService.isAuthenticated$ | async }}</span>
+          <ul *ngIf="authService.isAuthenticated$ | async">
+            <li>
+              <span>Expiring in: </span>
+              <ion-chip>
+                <ion-icon name="alarm"></ion-icon>
+                <ion-label
+                  ><strong>{{ secondsToExpiration$ | async }}</strong>
+                  seconds</ion-label
+                >
+              </ion-chip>
+            </li>
+          </ul>
         </li>
         <li>
           <strong>hasValidToken: </strong>
@@ -33,7 +73,32 @@
         </li>
         <li>
           <strong>identityClaims: </strong>
-          <code>{{ authService.identityClaims | json }}</code>
+          <code class="pre">{{ authService.identityClaims | json }}</code>
+          <ul *ngIf="authService.identityClaims as claims">
+            <li *ngFor="let claimTime of claimTimes">
+              <strong>{{ claimTime.key }} </strong> ({{ claimTime.desc }}):
+              <span *ngIf="claims[claimTime.key]">{{
+                claims[claimTime.key] * 1000 | date: "full"
+              }}</span>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Tokens</strong>
+          <ul>
+            <li *ngFor="let claimToken of claimTokens">
+              <strong>{{ claimToken }}: </strong>
+              <code>{{ authService[claimToken] }}</code>
+              <ul *ngIf="authService[claimToken]">
+                <li>
+                  <strong>Decoded: </strong>
+                  <code class="pre">{{
+                    AuthService.decodeToken(authService[claimToken]) | json
+                  }}</code>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </li>
       </ul>
     </ion-card-content>

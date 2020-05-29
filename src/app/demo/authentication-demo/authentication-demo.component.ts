@@ -1,5 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AuthService } from "src/app/core/auth/auth.service";
+import { switchMap, tap, map, catchError } from "rxjs/operators";
+import { interval, of } from "rxjs";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { NotificationService } from "src/app/core/ui/notification.service";
 
 @Component({
   selector: "app-authentication-demo",
@@ -7,27 +11,52 @@ import { AuthService } from "src/app/core/auth/auth.service";
   styleUrls: ["./authentication-demo.component.scss"],
 })
 export class AuthenticationDemoComponent {
-  authenticationInfos = [
-    {
-      key: "isAuthenticated$",
-      value: this.authService.isAuthenticated$,
-      async: true,
-    },
-    { key: "hasValidToken", value: this.authService.hasValidToken() },
-    {
-      key: "isDoneLoading$",
-      value: this.authService.isDoneLoading$,
-      async: true,
-    },
-    {
-      key: "canActivateProtectedRoutes$",
-      value: this.authService.canActivateProtectedRoutes$,
-      async: true,
-    },
-    {
-      key: "identityClaims",
-      value: this.authService.identityClaims,
-    },
+  AuthService = AuthService;
+
+  claimTimes = [
+    { key: "iat", desc: "issued at" },
+    { key: "nbf", desc: "not before" },
+    { key: "exp", desc: "expiration time" },
   ];
-  constructor(public authService: AuthService) {}
+
+  claimTokens = ["refreshToken", "accessToken", "idToken"];
+
+  secondsToExpiration$ = this.authService.isAuthenticated$.pipe(
+    switchMap(() => interval(1000)),
+    map(() => {
+      const claims: any = this.authService.identityClaims;
+      return claims && claims.exp
+        ? Math.round(claims.exp - new Date().getTime() / 1000)
+        : 0;
+    })
+  );
+
+  constructor(
+    public authService: AuthService,
+    private http: HttpClient,
+    private notificationService: NotificationService
+  ) {}
+
+  reload() {
+    window.location.reload();
+  }
+
+  clearStorage() {
+    localStorage.clear();
+  }
+
+  async callApi() {
+    const res = await this.http
+      .get<any>("https://demo.identityserver.io/api/test")
+      .pipe(
+        map((response) => response.find((i) => i.type === "iss").value),
+        map((iss) => "☁ API Success from " + iss),
+        catchError((e: HttpErrorResponse) =>
+          of(`🌩 API Error: ${e.status} ${e.statusText}`)
+        )
+      )
+      .toPromise();
+
+    await this.notificationService.showSimpleNotification(res);
+  }
 }

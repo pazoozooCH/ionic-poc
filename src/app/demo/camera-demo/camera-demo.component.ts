@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ToastController } from "@ionic/angular";
+import { NotificationService } from "src/app/core/ui/notification.service";
 
 @Component({
   selector: "app-camera-demo",
@@ -18,8 +19,8 @@ export class CameraDemoComponent {
   quality = 100;
 
   constructor(
-    private sanitizer: DomSanitizer,
-    private toastController: ToastController
+    private notificationService: NotificationService,
+    private sanitizer: DomSanitizer
   ) {}
 
   onCameraSourceChange(event: CustomEvent) {
@@ -47,11 +48,9 @@ export class CameraDemoComponent {
       this.showInfo = false;
     } catch (error) {
       console.error(error);
-      const toast = await this.toastController.create({
-        duration: 2000,
-        message: `Couldn't take photo: ${error}`,
-      });
-      await toast.present();
+      await this.notificationService.showSimpleNotification(
+        `Couldn't take photo: ${error}`
+      );
     }
   }
 }

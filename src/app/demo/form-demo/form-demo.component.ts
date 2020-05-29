@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ToastController, ActionSheetController } from "@ionic/angular";
+import {
+  NotificationService,
+  NotificationDuration,
+} from "src/app/core/ui/notification.service";
 
 @Component({
   selector: "app-form-demo",
@@ -24,7 +28,7 @@ export class FormDemoComponent {
   constructor(
     private actionSheetController: ActionSheetController,
     private fb: FormBuilder,
-    private toastController: ToastController
+    private notificationService: NotificationService
   ) {}
 
   async submit() {
@@ -32,11 +36,10 @@ export class FormDemoComponent {
   }
 
   private async showToast(message: string) {
-    const toast = await this.toastController.create({
+    await this.notificationService.showSimpleNotification(
       message,
-      duration: 1000,
-    });
-    await toast.present();
+      NotificationDuration.Short
+    );
   }
 
   async showActionSheet() {

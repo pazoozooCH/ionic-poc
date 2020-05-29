@@ -1,5 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ToastController } from "@ionic/angular";
+import {
+  NotificationService,
+  NotificationDuration,
+} from "src/app/core/ui/notification.service";
 
 interface ReorderingItem {
   index: number;
@@ -33,10 +37,13 @@ export class ListDemoComponent {
     (_, i) => ListDemoComponent.colors[i % ListDemoComponent.colors.length]
   );
 
-  constructor(private toastController: ToastController) {}
+  constructor(private notificationService: NotificationService) {}
 
-  selected(text: string) {
-    this.showToast(text);
+  async selected(text: string) {
+    await this.notificationService.showSimpleNotification(
+      text,
+      NotificationDuration.Short
+    );
   }
 
   doReorder(event: CustomEvent) {
@@ -54,13 +61,5 @@ export class ListDemoComponent {
 
   doReorder2(event: CustomEvent) {
     event.detail.complete();
-  }
-
-  private async showToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 1000,
-    });
-    await toast.present();
   }
 }

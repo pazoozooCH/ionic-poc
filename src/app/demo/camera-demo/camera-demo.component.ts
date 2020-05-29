@@ -36,6 +36,7 @@ export class CameraDemoComponent {
         quality: this.quality,
         allowEditing: false,
         resultType: CameraResultType.DataUrl,
+        // Obviously not working. See https://github.com/ionic-team/capacitor/issues/490
         source: this.cameraSource,
       });
 

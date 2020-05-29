@@ -2,6 +2,8 @@
 
 ## Development
 
+The application works with Node **12.x**.
+
 ### IDE Setup
 
 #### Visual Studio Code

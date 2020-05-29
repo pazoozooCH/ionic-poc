@@ -35,6 +35,17 @@ To run the application locally:
 - `npm install`
 - `npm start`
 
+#### Run as PWA
+
+When we use `ng serve` (as in `npm start`), the application will not work with service
+workers. For this, we must use a separate HTTP server:
+
+- `npm run build:prod`
+- `npm run serve:pwa`
+- Open application at <http://localhost:8080>. Note that we do not have
+  automatic SPA to `/index.html` redirection, so specific routes
+  will not work in this modes.
+
 ## Deployment
 
 The application will be deployed to Firebase and is accessible at:

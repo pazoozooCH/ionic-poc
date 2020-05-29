@@ -9,12 +9,14 @@
         "files": [
           "/favicon.ico",
           "/index.html",
+          "/silent-refresh.html",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
         ]
       }
-    }, {
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",

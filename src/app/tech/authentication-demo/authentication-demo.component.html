@@ -10,6 +10,27 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header>
+      <ion-card-title>Links</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div>
+        <ion-chip *ngFor="let i of securedLinks" [routerLink]="'secured/' + i"
+          >Secured [Blocking] - {{ i }}</ion-chip
+        >
+      </div>
+      <div>
+        <ion-chip
+          *ngFor="let i of securedLinks"
+          [routerLink]="'securedWithLogin/' + i"
+          >Secured With Login - {{ i }}</ion-chip
+        >
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
       <ion-card-title>Actions</ion-card-title>
     </ion-card-header>
 

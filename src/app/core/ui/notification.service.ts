@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ToastController } from "@ionic/angular";
+import { ToastOptions } from "@ionic/core";
 
 export enum NotificationDuration {
   Short = 1000,
@@ -18,9 +19,24 @@ export class NotificationService {
     message: string,
     duration = NotificationDuration.Medium
   ) {
+    await this.showToast(message, { duration });
+  }
+
+  async showError(error: string) {
+    await this.showToast(error, {
+      color: "danger",
+    });
+  }
+
+  private async showToast(message: string, options: ToastOptions = {}) {
+    const defaultOptions: ToastOptions = {
+      duration: NotificationDuration.Medium,
+    };
+
     const toast = await this.toastController.create({
       message,
-      duration,
+      ...defaultOptions,
+      ...options,
     });
 
     await toast.present();

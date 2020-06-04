@@ -13,6 +13,8 @@ import { NotificationService } from "src/app/core/ui/notification.service";
 export class AuthenticationDemoComponent {
   AuthService = AuthService;
 
+  securedLinks = Array.from(new Array(5)).map((_, i) => i);
+
   claimTimes = [
     { key: "iat", desc: "issued at" },
     { key: "nbf", desc: "not before" },
@@ -52,17 +54,24 @@ export class AuthenticationDemoComponent {
 
     const res = await forkJoin(reqs)
       .pipe(
-        map(
-          (texts: string[]) =>
-            `☁ API Success (${texts.length} requests). First: ${texts[0]}`
-        ),
+        map((texts: string[]) => ({
+          text: `☁ API Success (${texts.length} requests). First: ${texts[0]}`,
+          success: true,
+        })),
         catchError((e: HttpErrorResponse) =>
-          of(`🌩 API Error: ${e.status} ${e.statusText}`)
+          of({
+            text: `🌩 API Error: ${e.status} ${e.statusText}`,
+            success: false,
+          })
         )
       )
       .toPromise();
 
-    await this.notificationService.showSimpleNotification(res);
+    if (res.success) {
+      await this.notificationService.showSimpleNotification(res.text);
+    } else {
+      await this.notificationService.showError(res.text);
+    }
   }
 
   private getSecuredText$(): Observable<string> {

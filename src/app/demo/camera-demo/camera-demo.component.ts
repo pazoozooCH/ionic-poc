@@ -48,9 +48,7 @@ export class CameraDemoComponent {
       this.showInfo = false;
     } catch (error) {
       console.error(error);
-      await this.notificationService.showSimpleNotification(
-        `Couldn't take photo: ${error}`
-      );
+      await this.notificationService.showError(`Couldn't take photo: ${error}`);
     }
   }
 }

@@ -1,0 +1,15 @@
+.cards {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-number {
+  font-size: 30vh;
+}
+
+ion-card {
+  min-width: 30vw;
+  text-align: center;
+}

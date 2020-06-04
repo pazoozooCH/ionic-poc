@@ -24,7 +24,7 @@
       </div>
       <div>
         <ion-button color="tertiary" (click)="authService.refresh()"
-          >Force Silent Refresh</ion-button
+          >Force Refresh</ion-button
         >
         <ion-button color="tertiary" (click)="reload()">Reload Page</ion-button>
         <ion-button color="danger" (click)="clearStorage()"
@@ -46,18 +46,9 @@
         <li>
           <strong>isAuthenticated$: </strong>
           <span>{{ authService.isAuthenticated$ | async }}</span>
-          <ul *ngIf="authService.isAuthenticated$ | async">
-            <li>
-              <span>Expiring in: </span>
-              <ion-chip>
-                <ion-icon name="alarm"></ion-icon>
-                <ion-label
-                  ><strong>{{ secondsToExpiration$ | async }}</strong>
-                  seconds</ion-label
-                >
-              </ion-chip>
-            </li>
-          </ul>
+          <app-expiration-counter
+            [secondsToExpiration]="secondsToExpiration$ | async"
+          ></app-expiration-counter>
         </li>
         <li>
           <strong>hasValidToken: </strong>

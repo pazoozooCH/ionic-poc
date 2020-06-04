@@ -5,10 +5,8 @@ export const authConfig: AuthConfig = {
   clientId: "spa", // The "Auth Code + PKCE" client
   responseType: "code",
   redirectUri: window.location.origin + "/index.html",
-  silentRefreshRedirectUri: window.location.origin + "/silent-refresh.html",
-  scope: "openid profile email api", // Ask offline_access to support refresh token refreshes
-  useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
-  silentRefreshTimeout: 5000, // For faster testing
+  scope: "openid profile email api offline_access", // Ask offline_access to support refresh token refreshes
+  useSilentRefresh: false, // Doesn't work anymore with latest Safari cookie security
   timeoutFactor: 0.25, // For faster testing
   sessionChecksEnabled: true,
   showDebugInformation: true, // Also requires enabling "Verbose" level in devtools

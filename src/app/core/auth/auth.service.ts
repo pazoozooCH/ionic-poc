@@ -57,8 +57,6 @@ export class AuthService {
         filter((e) => ["session_terminated", "session_error"].includes(e.type))
       )
       .subscribe((e) => this.navigateToLoginPage());
-
-    this.oauthService.setupAutomaticSilentRefresh();
   }
 
   // These normally won't be exposed from a service like this, but
@@ -155,7 +153,7 @@ export class AuthService {
           // Try to log in via a refresh because then we can prevent
           // needing to redirect the user:
           return this.oauthService
-            .silentRefresh()
+            .refreshToken()
             .then(() => Promise.resolve())
             .catch((result) => {
               // Subset of situations from https://openid.net/specs/openid-connect-core-1_0.html#AuthError
@@ -231,7 +229,7 @@ export class AuthService {
     this.oauthService.logOut();
   }
   public refresh() {
-    this.oauthService.silentRefresh();
+    this.oauthService.refreshToken();
   }
   public hasValidToken() {
     return this.oauthService.hasValidAccessToken();

@@ -1,0 +1,11 @@
+<ul *ngIf="secondsToExpiration !== undefined">
+  <li>
+    <span>{{ expired ? "Expired since" : "Expiring in" }}: </span>
+    <ion-chip [color]="expired ? 'danger' : 'success'">
+      <ion-icon name="alarm"></ion-icon>
+      <ion-label
+        ><strong>{{ Math.abs(secondsToExpiration) }}</strong> seconds</ion-label
+      >
+    </ion-chip>
+  </li>
+</ul>

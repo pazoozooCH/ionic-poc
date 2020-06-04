@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AuthService } from "src/app/core/auth/auth.service";
 import { switchMap, tap, map, catchError } from "rxjs/operators";
-import { interval, of } from "rxjs";
+import { interval, of, Observable, forkJoin } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { NotificationService } from "src/app/core/ui/notification.service";
 
@@ -45,13 +45,17 @@ export class AuthenticationDemoComponent {
     localStorage.clear();
   }
 
-  async callApi() {
-    const res = await this.http
-      .get<any>(
-        "https://accounts.inftec.ch/auth/realms/pwa-poc/protocol/openid-connect/userinfo"
-      )
+  async callApi(times = 1) {
+    const reqs = Array.from(new Array(times)).map((i) =>
+      this.getSecuredText$()
+    );
+
+    const res = await forkJoin(reqs)
       .pipe(
-        map((userInfo) => "☁ API Success: " + userInfo.sub),
+        map(
+          (texts: string[]) =>
+            `☁ API Success (${texts.length} requests). First: ${texts[0]}`
+        ),
         catchError((e: HttpErrorResponse) =>
           of(`🌩 API Error: ${e.status} ${e.statusText}`)
         )
@@ -59,5 +63,9 @@ export class AuthenticationDemoComponent {
       .toPromise();
 
     await this.notificationService.showSimpleNotification(res);
+  }
+
+  private getSecuredText$(): Observable<string> {
+    return this.http.get("/api/testing/secured", { responseType: "text" });
   }
 }

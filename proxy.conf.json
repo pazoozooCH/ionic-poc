@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "https://ast-test.pub.inftec.ch",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

@@ -101,3 +101,12 @@ A dedicated realm and client have been set up for this:
 - Web Origins: _http://localhost:4200_
 - Direct Access Grants Enabled: _false_
 - Access Token Lifespan: _1 minute_ (better for testing)
+
+#### Client in AST Realm
+
+- Client-ID: _pwa-poc_
+- Client Protocol: _openid-connect_
+- Valid Redirect URLs: _http://localhost:4200/index.html_
+- Web Origins: _http://localhost:4200_
+- Direct Access Grants Enabled: _false_
+- Access Token Lifespan: _1 minute_ (better for testing)

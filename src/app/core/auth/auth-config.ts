@@ -1,7 +1,7 @@
 import { AuthConfig } from "angular-oauth2-oidc";
 
 export const authConfig: AuthConfig = {
-  issuer: "https://accounts.inftec.ch/auth/realms/pwa-poc",
+  issuer: "https://accounts.inftec.ch/auth/realms/tecton",
   clientId: "pwa-poc", // The "Auth Code + PKCE" client
   responseType: "code",
   redirectUri: window.location.origin + "/index.html",

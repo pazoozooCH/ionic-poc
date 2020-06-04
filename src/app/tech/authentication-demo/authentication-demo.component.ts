@@ -47,10 +47,11 @@ export class AuthenticationDemoComponent {
 
   async callApi() {
     const res = await this.http
-      .get<any>("https://demo.identityserver.io/api/test")
+      .get<any>(
+        "https://accounts.inftec.ch/auth/realms/pwa-poc/protocol/openid-connect/userinfo"
+      )
       .pipe(
-        map((response) => response.find((i) => i.type === "iss").value),
-        map((iss) => "☁ API Success from " + iss),
+        map((userInfo) => "☁ API Success: " + userInfo.sub),
         catchError((e: HttpErrorResponse) =>
           of(`🌩 API Error: ${e.status} ${e.statusText}`)
         )

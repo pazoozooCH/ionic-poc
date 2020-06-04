@@ -79,3 +79,25 @@ Your Ionic app is ready! Follow these next steps:
 - Generate your app icon and splash screens using cordova-res --skip-config --copy
 - Explore the Ionic docs for components, tutorials, and more: <https://ion.link/docs>
 - Building an enterprise app? Ionic has Enterprise Support and Features: <https://ion.link/enterprise-edition>
+
+## Authentication
+
+### Keycloak Setup
+
+We're using the InfTec internal Keycloak for OAuth2 authentication testing.
+
+A dedicated realm and client have been set up for this:
+
+#### Realm
+
+- Name: _pwa-poc_
+- Issuer: _https://accounts.inftec.ch/auth/realms/pwa-poc_
+
+#### Client
+
+- Client-ID: _pwa-poc_
+- Client Protocol: _openid-connect_
+- Valid Redirect URLs: _http://localhost:4200/index.html_
+- Web Origins: _http://localhost:4200_
+- Direct Access Grants Enabled: _false_
+- Access Token Lifespan: _1 minute_ (better for testing)

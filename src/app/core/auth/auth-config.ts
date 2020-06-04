@@ -1,8 +1,8 @@
 import { AuthConfig } from "angular-oauth2-oidc";
 
 export const authConfig: AuthConfig = {
-  issuer: "https://demo.identityserver.io",
-  clientId: "spa", // The "Auth Code + PKCE" client
+  issuer: "https://accounts.inftec.ch/auth/realms/pwa-poc",
+  clientId: "pwa-poc", // The "Auth Code + PKCE" client
   responseType: "code",
   redirectUri: window.location.origin + "/index.html",
   scope: "openid profile email api offline_access", // Ask offline_access to support refresh token refreshes

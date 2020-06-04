@@ -11,6 +11,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { CoreModule } from "./core/core.module";
+import { RefreshInterceptor } from "./core/auth/refresh-interceptor";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +30,7 @@ import { CoreModule } from "./core/core.module";
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: RefreshInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

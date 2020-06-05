@@ -5,6 +5,7 @@ import { interval, of, Observable, forkJoin } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { NotificationService } from "src/app/core/ui/notification.service";
 import { environment } from "src/environments/environment";
+import { DeviceService } from "src/app/core/pwa/device.service";
 
 @Component({
   selector: "app-authentication-demo",
@@ -40,8 +41,11 @@ export class AuthenticationDemoComponent {
     })
   );
 
+  isOnline$ = this.deviceService.isOnline$;
+
   constructor(
     public authService: AuthService,
+    private deviceService: DeviceService,
     private http: HttpClient,
     private notificationService: NotificationService
   ) {}

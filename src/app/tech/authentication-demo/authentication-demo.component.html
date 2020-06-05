@@ -35,41 +35,50 @@
     </ion-card-header>
 
     <ion-card-content>
-      <div>
-        <ion-button
-          color="primary"
-          (click)="authService.login()"
-          [disabled]="loginDisabled$ | async"
-          >Login</ion-button
-        >
-        <ion-button
-          color="warning"
-          (click)="authService.logout()"
-          [disabled]="logoutDisabled$ | async"
-          >Logout</ion-button
-        >
+      <div *ngIf="isOnline$ | async; else offline">
+        <div>
+          <ion-button
+            color="primary"
+            (click)="authService.login()"
+            [disabled]="loginDisabled$ | async"
+            >Login</ion-button
+          >
+          <ion-button
+            color="warning"
+            (click)="authService.logout()"
+            [disabled]="logoutDisabled$ | async"
+            >Logout</ion-button
+          >
+        </div>
+        <div>
+          <ion-button color="tertiary" (click)="authService.refresh()"
+            >Force Refresh</ion-button
+          >
+          <ion-button color="tertiary" (click)="reload()"
+            >Reload Page</ion-button
+          >
+          <ion-button color="danger" (click)="clearStorage()"
+            >Clear Storage</ion-button
+          >
+        </div>
+        <div>
+          <ion-button color="tertiary" (click)="callApi()">Call API</ion-button>
+          <ion-button color="tertiary" (click)="callApi(2)"
+            >Call API 2 Times</ion-button
+          >
+          <ion-button color="tertiary" (click)="callApi(5)"
+            >Call API 5 Times</ion-button
+          >
+          <ion-button color="tertiary" (click)="callApi(10)"
+            >Call API 10 Times</ion-button
+          >
+        </div>
       </div>
-      <div>
-        <ion-button color="tertiary" (click)="authService.refresh()"
-          >Force Refresh</ion-button
-        >
-        <ion-button color="tertiary" (click)="reload()">Reload Page</ion-button>
-        <ion-button color="danger" (click)="clearStorage()"
-          >Clear Storage</ion-button
-        >
-      </div>
-      <div>
-        <ion-button color="tertiary" (click)="callApi()">Call API</ion-button>
-        <ion-button color="tertiary" (click)="callApi(2)"
-          >Call API 2 Times</ion-button
-        >
-        <ion-button color="tertiary" (click)="callApi(5)"
-          >Call API 5 Times</ion-button
-        >
-        <ion-button color="tertiary" (click)="callApi(10)"
-          >Call API 10 Times</ion-button
-        >
-      </div>
+      <ng-template #offline>
+        <ion-chip color="danger"
+          >You are offline. Get online to perform Authentication actions.
+        </ion-chip>
+      </ng-template>
     </ion-card-content>
   </ion-card>
   <ion-card>

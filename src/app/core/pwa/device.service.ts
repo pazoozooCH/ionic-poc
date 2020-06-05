@@ -16,5 +16,12 @@ export class DeviceService {
     Network.addListener("networkStatusChange", (status) => {
       this.isOnline$.next(status.connected);
     });
+
+    this.init();
+  }
+
+  private async init() {
+    const status = await Network.getStatus();
+    this.isOnline$.next(status.connected);
   }
 }

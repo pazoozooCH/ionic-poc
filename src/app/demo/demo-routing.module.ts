@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormDemoComponent } from "./form-demo/form-demo.component";
 import { CameraDemoComponent } from "./camera-demo/camera-demo.component";
 import { ListDemoComponent } from "./list-demo/list-demo.component";
+import { LocalStorageDemoComponent } from "./local-storage-demo/local-storage-demo.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: "list",
     component: ListDemoComponent,
+  },
+  {
+    path: "storage",
+    component: LocalStorageDemoComponent,
   },
   {
     path: "",

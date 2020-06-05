@@ -9,6 +9,7 @@ import { PwaDemoComponent } from "./pwa-demo/pwa-demo.component";
 import { ClipboardDemoComponent } from "./pwa-demo/clipboard-demo/clipboard-demo.component";
 import { FormsModule } from "@angular/forms";
 import { DeviceDemoComponent } from "./pwa-demo/device-demo/device-demo.component";
+import { NetworkDemoComponent } from "./pwa-demo/network-demo/network-demo.component";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DeviceDemoComponent } from "./pwa-demo/device-demo/device-demo.componen
     ClipboardDemoComponent,
     DeviceDemoComponent,
     ExpirationCounterComponent,
+    NetworkDemoComponent,
     PwaDemoComponent,
     SecuredPageComponent,
   ],

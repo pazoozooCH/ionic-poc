@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Network</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ul>
+      <li>
+        NetworkStatus: <code>{{ status | json }}</code>
+      </li>
+      <li *ngIf="changes.length > 0">
+        Changes:
+        <ul>
+          <li *ngFor="let change of changes">{{ change | json }}</li>
+        </ul>
+      </li>
+    </ul>
+  </ion-card-content>
+</ion-card>

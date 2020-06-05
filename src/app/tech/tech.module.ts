@@ -10,6 +10,7 @@ import { ClipboardDemoComponent } from "./pwa-demo/clipboard-demo/clipboard-demo
 import { FormsModule } from "@angular/forms";
 import { DeviceDemoComponent } from "./pwa-demo/device-demo/device-demo.component";
 import { NetworkDemoComponent } from "./pwa-demo/network-demo/network-demo.component";
+import { SwUpdateComponent } from "./pwa-demo/sw-update/sw-update.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NetworkDemoComponent } from "./pwa-demo/network-demo/network-demo.compo
     NetworkDemoComponent,
     PwaDemoComponent,
     SecuredPageComponent,
+    SwUpdateComponent,
   ],
   imports: [CommonModule, TechRoutingModule, IonicModule, FormsModule],
 })

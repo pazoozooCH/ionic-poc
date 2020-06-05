@@ -1,0 +1,32 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>SW Update</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content
+    ><ul>
+      <li><strong>isEnabled: </strong>{{ swUpdateService.isEnabled }}</li>
+      <li><strong>version: </strong>{{ version }}</li>
+      <li><strong>buildTime: </strong>{{ buildTime }}</li>
+      <li *ngFor="let event of events">
+        <strong>{{ event.name }}:</strong>
+        <ng-container *ngIf="event.events | async as actualEvents">
+          <ul *ngIf="actualEvents.length > 0; else none">
+            <li *ngFor="let ev of actualEvents">{{ ev | json }}</li>
+          </ul>
+          <ng-template #none>
+            none
+          </ng-template>
+        </ng-container>
+      </li>
+    </ul>
+    <div>
+      <ion-button (click)="swUpdateService.checkForUpdate()"
+        >Check For Update</ion-button
+      >
+      <ion-button (click)="swUpdateService.activateUpdate()"
+        >Activate Update</ion-button
+      >
+    </div>
+  </ion-card-content>
+</ion-card>

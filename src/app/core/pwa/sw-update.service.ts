@@ -48,7 +48,10 @@ export class SwUpdateService {
   async activateUpdate() {
     try {
       await this.swUpdate.activateUpdate();
-      await this.notificationService.showSimpleNotification("Update done");
+      await this.notificationService.showSimpleNotification(
+        "Update done. Reloading."
+      );
+      window.location.reload();
     } catch (err) {
       await this.notificationService.showError(`Update failed: ${err}`);
     }

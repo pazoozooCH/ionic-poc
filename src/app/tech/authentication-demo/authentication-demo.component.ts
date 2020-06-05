@@ -4,6 +4,7 @@ import { switchMap, tap, map, catchError } from "rxjs/operators";
 import { interval, of, Observable, forkJoin } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { NotificationService } from "src/app/core/ui/notification.service";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-authentication-demo",
@@ -75,6 +76,8 @@ export class AuthenticationDemoComponent {
   }
 
   private getSecuredText$(): Observable<string> {
-    return this.http.get("/api/testing/secured", { responseType: "text" });
+    return this.http.get(`${environment.astHost}/api/testing/secured`, {
+      responseType: "text",
+    });
   }
 }

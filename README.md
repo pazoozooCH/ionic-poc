@@ -86,21 +86,7 @@ Your Ionic app is ready! Follow these next steps:
 
 We're using the InfTec internal Keycloak for OAuth2 authentication testing.
 
-A dedicated realm and client have been set up for this:
-
-#### Realm
-
-- Name: _pwa-poc_
-- Issuer: _https://accounts.inftec.ch/auth/realms/pwa-poc_
-
-#### Client
-
-- Client-ID: _pwa-poc_
-- Client Protocol: _openid-connect_
-- Valid Redirect URLs: _http://localhost:4200/index.html_
-- Web Origins: _http://localhost:4200_
-- Direct Access Grants Enabled: _false_
-- Access Token Lifespan: _1 minute_ (better for testing)
+A dedicated client in the existing tecton realm have been created.
 
 #### Client in AST Realm
 

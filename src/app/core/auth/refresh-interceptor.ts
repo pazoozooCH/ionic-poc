@@ -23,38 +23,21 @@ export class RefreshInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log("##intercepting");
     return next.handle(req).pipe(
-      tap((res) => {
-        console.log("##intercepted", res.type, res);
-        if (
-          res.type === HttpEventType.Response ||
-          res.type === HttpEventType.ResponseHeader
-        ) {
-          const httpResponse = res as HttpResponse<any>;
-          console.log("##response", res.status);
-        }
-      }),
       catchError((err: HttpErrorResponse) => {
-        console.log("##catchError of interceptor");
         if (err && err.status === 401 && req.headers.has("Authorization")) {
           if (!this.refreshing$) {
-            console.log("##triggering refresh");
             this.refreshing$ = from(this.authService.refresh()).pipe(
               share(),
               finalize(() => {
-                console.log("#refreshing done");
                 this.refreshing$ = null;
               })
             );
-          } else {
-            console.log("#reusing refreshing");
           }
 
           return this.refreshing$.pipe(
             switchMap((tokenRes) => {
               if (tokenRes.access_token) {
-                console.log("##Resending request");
                 const header = "Bearer " + tokenRes.access_token;
                 const headers = req.headers.set("Authorization", header);
                 const updatedReq = req.clone({ headers });
@@ -63,9 +46,10 @@ export class RefreshInterceptor implements HttpInterceptor {
                 return throwError(err);
               }
             }),
-            catchError((err) => {
-              console.log("###error refreshing token", err);
-              throw err; // TODO redirect to login...
+            catchError((refreshError) => {
+              console.error("refreshing token", refreshError);
+              // TODO Consider redirect to login...
+              throw err;
             })
           );
         } else {

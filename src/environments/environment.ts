@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  astHost: "http://localhost:8080",
 };
 
 /*

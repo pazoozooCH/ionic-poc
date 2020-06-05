@@ -92,7 +92,11 @@ A dedicated client in the existing tecton realm have been created.
 
 - Client-ID: _pwa-poc_
 - Client Protocol: _openid-connect_
-- Valid Redirect URLs: _http://localhost:4200/index.html_
-- Web Origins: _http://localhost:4200_
+- Valid Redirect URLs:
+  - _http://localhost:4200/index.html_
+  - _https://inftec-ionic-poc.web.app/index.html_
+- Web Origins:
+  - _http://localhost:4200_
+  - _https://inftec-ionic-poc.web.app_
 - Direct Access Grants Enabled: _false_
 - Access Token Lifespan: _1 minute_ (better for testing)

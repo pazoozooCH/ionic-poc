@@ -4,6 +4,7 @@ import { AuthenticationDemoComponent } from "./authentication-demo/authenticatio
 import { SecuredPageComponent } from "./authentication-demo/secured-page/secured-page.component";
 import { AuthGuard } from "../core/auth/guards/auth-guard.service";
 import { AuthGuardWithForcedLogin } from "../core/auth/guards/auth-guard-with-forced-login.service";
+import { PwaDemoComponent } from "./pwa-demo/pwa-demo.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     data: {
       type: "With Login",
     },
+  },
+  {
+    path: "pwa",
+    component: PwaDemoComponent,
   },
   {
     path: "",

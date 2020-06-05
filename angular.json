@@ -199,13 +199,11 @@
     "@ionic/angular-toolkit:page": {
       "styleext": "scss"
     },
-    "@schematics/angular": {
-      "component": {
-        "skipTests": true
-      },
-      "service": {
-        "skipTests": true
-      }
+    "@schematics/angular:component": {
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
     }
   }
 }

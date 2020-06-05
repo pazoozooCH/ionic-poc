@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AuthService } from "src/app/core/auth/auth.service";
-import { switchMap, tap, map, catchError } from "rxjs/operators";
+import { switchMap, tap, map, catchError, startWith } from "rxjs/operators";
 import { interval, of, Observable, forkJoin } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { NotificationService } from "src/app/core/ui/notification.service";
@@ -23,6 +23,12 @@ export class AuthenticationDemoComponent {
   ];
 
   claimTokens = ["refreshToken", "accessToken", "idToken"];
+
+  loginDisabled$ = this.authService.isAuthenticated$.pipe(startWith(true));
+  logoutDisabled$ = this.authService.canActivateProtectedRoutes$.pipe(
+    map((canActivate) => !canActivate),
+    startWith(true)
+  );
 
   secondsToExpiration$ = this.authService.isAuthenticated$.pipe(
     switchMap(() => interval(1000)),

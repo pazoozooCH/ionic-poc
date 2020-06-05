@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Welcome to the Ionic-POC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Overview</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ul>
+        <li>
+          <span>Version: </span>
+          <ion-chip routerLink="/tech/pwa" color="primary"
+            ><ion-label>{{ version }}</ion-label>
+          </ion-chip>
+          <span
+            ><strong>{{ localBuildTime | date: "long" }}</strong> ({{
+              buildTime
+            }})</span
+          >
+        </li>
+        <li>
+          <span>Login Status: </span>
+          <ion-chip
+            *ngIf="loggedIn$ | async; else notLoggedIn"
+            routerLink="/tech/authentication"
+            color="success"
+            ><ion-icon name="lock-closed"></ion-icon
+            ><ion-label>Logged In</ion-label>
+          </ion-chip>
+          <ng-template #notLoggedIn>
+            <ion-chip routerLink="/tech/authentication" color="danger"
+              ><ion-icon name="lock-open"></ion-icon
+              ><ion-label>Not Logged In</ion-label>
+            </ion-chip>
+          </ng-template>
+        </li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

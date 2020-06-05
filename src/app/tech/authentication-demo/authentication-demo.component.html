@@ -36,10 +36,16 @@
 
     <ion-card-content>
       <div>
-        <ion-button color="primary" (click)="authService.login()"
+        <ion-button
+          color="primary"
+          (click)="authService.login()"
+          [disabled]="loginDisabled$ | async"
           >Login</ion-button
         >
-        <ion-button color="warning" (click)="authService.logout()"
+        <ion-button
+          color="warning"
+          (click)="authService.logout()"
+          [disabled]="logoutDisabled$ | async"
           >Logout</ion-button
         >
       </div>

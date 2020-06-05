@@ -114,8 +114,7 @@ export class AuthService {
   }
 
   private navigateToLoginPage() {
-    // TODO: Remember current URL
-    this.router.navigateByUrl("/should-login");
+    this.router.navigateByUrl("/welcome");
   }
 
   public runInitialLoginSequence(): Promise<void> {

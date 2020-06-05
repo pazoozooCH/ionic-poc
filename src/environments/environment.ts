@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   build: {
     version: "LOCAL",
-    buildTime: "LOCAL_BUILD_TIME",
+    buildTime: "1999-06-05T10:26:30Z",
   },
   astHost: "http://localhost:8080",
 };

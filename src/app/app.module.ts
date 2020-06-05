@@ -13,9 +13,10 @@ import { environment } from "../environments/environment";
 import { CoreModule } from "./core/core.module";
 import { RefreshInterceptor } from "./core/auth/refresh-interceptor";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { WelcomeComponent } from "./main/welcome/welcome.component";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, WelcomeComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

@@ -2,6 +2,16 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
+        <ion-item
+          routerLink="welcome"
+          routerLinkActive="selected"
+          detail="false"
+          lines="none"
+        >
+          <ion-icon slot="start" name="home"></ion-icon>
+          <ion-label>Welcome</ion-label>
+        </ion-item>
+
         <ion-list id="demo-list">
           <ion-list-header>Demo</ion-list-header>
 

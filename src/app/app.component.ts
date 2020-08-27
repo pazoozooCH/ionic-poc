@@ -12,7 +12,7 @@ import { Observable } from "rxjs";
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   isAuthenticated$: Observable<boolean> = this.authService.isAuthenticated$;
 
   constructor(
@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
+    console.info("Starting App");
     this.initializeApp();
-    this.authService.runInitialLoginSequence();
   }
 
   initializeApp() {
@@ -31,26 +31,5 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  }
-
-  ngOnInit() {
-    this.showAuthenticatingOverlay();
-  }
-
-  private async showAuthenticatingOverlay() {
-    const loading = await this.loadingController.create({
-      message: "Authenticating...",
-    });
-
-    await loading.present();
-
-    await this.authService.isDoneLoading$
-      .pipe(
-        filter((done) => done),
-        take(1)
-      )
-      .toPromise();
-
-    await loading.dismiss();
   }
 }

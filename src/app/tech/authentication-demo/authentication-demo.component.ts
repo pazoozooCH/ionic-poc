@@ -25,12 +25,6 @@ export class AuthenticationDemoComponent {
 
   claimTokens = ["refreshToken", "accessToken", "idToken"];
 
-  loginDisabled$ = this.authService.isAuthenticated$.pipe(startWith(true));
-  logoutDisabled$ = this.authService.canActivateProtectedRoutes$.pipe(
-    map((canActivate) => !canActivate),
-    startWith(true)
-  );
-
   secondsToExpiration$ = this.authService.isAuthenticated$.pipe(
     switchMap(() => interval(1000)),
     map(() => {

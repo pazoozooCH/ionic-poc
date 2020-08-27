@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <span>Login Status: </span><span class="status">{{ loginStatus }}</span>
+  </div>
+  <ion-button
+    color="primary"
+    (click)="authService.login()"
+    [disabled]="loginDisabled"
+    >Login</ion-button
+  >
+  <ion-button
+    color="warning"
+    (click)="authService.logout()"
+    [disabled]="logoutDisabled$ | async"
+    >Logout</ion-button
+  >
+</div>

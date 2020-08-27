@@ -7,6 +7,7 @@
     "ng": "ng",
     "firebase": "firebase",
     "start": "ng serve",
+    "start:5000": "ng serve --port 5000",
     "build": "ng build",
     "build:prod": "ng build --prod",
     "check": "npm run format:check && npm run lint",

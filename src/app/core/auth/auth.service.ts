@@ -180,6 +180,8 @@ export class AuthService {
   }
 
   public login(targetUrl?: string) {
+    console.debug("Initializing login flow");
+
     // Note: before version 9.1.0 of the library you needed to
     // call encodeURIComponent on the argument to the method.
     this.oauthService.initLoginFlow(targetUrl || this.router.url);

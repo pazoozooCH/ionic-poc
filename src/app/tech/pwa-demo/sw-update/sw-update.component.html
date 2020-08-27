@@ -14,9 +14,7 @@
           <ul *ngIf="actualEvents.length > 0; else none">
             <li *ngFor="let ev of actualEvents">{{ ev | json }}</li>
           </ul>
-          <ng-template #none>
-            none
-          </ng-template>
+          <ng-template #none> none </ng-template>
         </ng-container>
       </li>
     </ul>

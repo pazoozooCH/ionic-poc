@@ -11,6 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { DeviceDemoComponent } from "./pwa-demo/device-demo/device-demo.component";
 import { NetworkDemoComponent } from "./pwa-demo/network-demo/network-demo.component";
 import { SwUpdateComponent } from "./pwa-demo/sw-update/sw-update.component";
+import { LoginComponent } from "./authentication-demo/login/login.component";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SwUpdateComponent } from "./pwa-demo/sw-update/sw-update.component";
     ClipboardDemoComponent,
     DeviceDemoComponent,
     ExpirationCounterComponent,
+    LoginComponent,
     NetworkDemoComponent,
     PwaDemoComponent,
     SecuredPageComponent,

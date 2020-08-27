@@ -31,25 +31,21 @@
 
   <ion-card>
     <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <app-login></app-login>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
       <ion-card-title>Actions</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       <div *ngIf="isOnline$ | async; else offline">
-        <div>
-          <ion-button
-            color="primary"
-            (click)="authService.login()"
-            [disabled]="loginDisabled$ | async"
-            >Login</ion-button
-          >
-          <ion-button
-            color="warning"
-            (click)="authService.logout()"
-            [disabled]="logoutDisabled$ | async"
-            >Logout</ion-button
-          >
-        </div>
         <div>
           <ion-button color="tertiary" (click)="authService.refresh()"
             >Force Refresh</ion-button
